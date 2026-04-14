@@ -272,7 +272,8 @@ def get_whois(domain: str) -> dict:
         result["updated"] = updated.strftime("%Y-%m-%d") if updated else None
 
         if created:
-            result["age_days"] = (datetime.datetime.utcnow() - created).days
+            ahora_utc = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)
+            result["age_days"] = (ahora_utc - created).days
     except Exception as e:
         result["raw_error"] = str(e)
     return result
@@ -482,7 +483,8 @@ def check_ssl(domain: str) -> dict:
                     dt_to = datetime.datetime.strptime(na, fmt)
                     result["valid_from"] = dt_from.strftime("%Y-%m-%d")
                     result["valid_to"] = dt_to.strftime("%Y-%m-%d")
-                    remaining = (dt_to - datetime.datetime.utcnow()).days
+                    ahora_utc_ssl = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)
+                    remaining = (dt_to - ahora_utc_ssl).days
                     result["days_remaining"] = remaining
                     result["expired"] = remaining < 0
                 except Exception:
@@ -826,7 +828,7 @@ def render_virustotal(data: dict, domain: str):
         cats = list(data["categories"].values())[:4]
         t.add_row("Categorías", ", ".join(cats))
     if data.get("last_analysis_date"):
-        ts = datetime.datetime.utcfromtimestamp(data["last_analysis_date"])
+        ts = datetime.datetime.fromtimestamp(data["last_analysis_date"], datetime.timezone.utc)
         t.add_row("Último análisis", ts.strftime("%Y-%m-%d %H:%M UTC"))
     t.add_row("🔗 Enlace VT", f"https://www.virustotal.com/gui/domain/{domain}")
 
@@ -1030,7 +1032,7 @@ def render_footer(domain: str):
 
 def investigate(domain: str, config: dict, save_json: bool = False):
     domain = domain.lower().strip().removeprefix("http://").removeprefix("https://").split("/")[0]
-    timestamp = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    timestamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
 
     render_header(domain, timestamp)
 
@@ -1086,7 +1088,8 @@ def investigate(domain: str, config: dict, save_json: bool = False):
 
     # ── Guardar JSON ──────────────────────────────────────────────
     if save_json:
-        output_file = f"report_{domain.replace('.', '_')}_{datetime.datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.json"
+        ahora = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d_%H%M%S')
+        output_file = f"report_{domain.replace('.', '_')}_{ahora}.json"
         with open(output_file, "w", encoding="utf-8") as f:
             json.dump({
                 "domain": domain,
