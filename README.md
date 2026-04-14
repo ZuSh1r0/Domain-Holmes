@@ -1,4 +1,4 @@
-# 🔍 Domain Investigator — Herramienta OSINT
+# 🔍 Domain Holmes — Herramienta OSINT
 
 Herramienta Python para análisis integral de dominios sospechosos.
 Combina múltiples APIs OSINT y verificaciones nativas para generar
