@@ -10,7 +10,7 @@ un reporte visual y didáctico directamente en la terminal.
 
 ```bash
 # 1. Clonar o descargar los archivos
-cd domain_investigator/
+cd Domain-Holmes/
 
 # 2. (Recomendado) Crear entorno virtual
 python -m venv venv
