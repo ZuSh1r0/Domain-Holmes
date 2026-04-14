@@ -1,0 +1,31 @@
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║           Domain Investigator — Configuración de API Keys        ║
+# ╚══════════════════════════════════════════════════════════════════╝
+#
+# Copia este archivo como "config.ini" y rellena tus claves.
+# Puedes obtenerlas gratuitamente en:
+#
+#   VirusTotal  → https://www.virustotal.com/gui/sign-in
+#                 Plan gratuito: 500 req/día, 4 req/min
+#
+#   AbuseIPDB   → https://www.abuseipdb.com/register
+#                 Plan gratuito: 1000 req/día
+#
+#   URLScan.io  → https://urlscan.io/user/signup
+#                 Sin clave: puede buscar escaneos públicos
+#                 Con clave: más cuota y escaneos privados
+#
+#   Shodan      → https://account.shodan.io/register
+#                 Plan gratuito: acceso a búsquedas básicas
+#
+# Alternativa: define las claves como variables de entorno:
+#   export VIRUSTOTAL_API_KEY="tu_clave_aqui"
+#   export ABUSEIPDB_API_KEY="tu_clave_aqui"
+#   export URLSCAN_API_KEY="tu_clave_aqui"
+#   export SHODAN_API_KEY="tu_clave_aqui"
+
+[API_KEYS]
+VIRUSTOTAL_API_KEY  = TU_CLAVE_AQUI
+ABUSEIPDB_API_KEY   = TU_CLAVE_AQUI
+URLSCAN_API_KEY     = TU_CLAVE_AQUI
+SHODAN_API_KEY      = TU_CLAVE_AQUI

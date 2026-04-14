@@ -1,0 +1,7 @@
+# Domain Investigator — Dependencias
+# Instalar con: pip install -r requirements.txt
+
+requests>=2.31.0        # HTTP client para llamadas a APIs
+dnspython>=2.4.2        # Resolución DNS avanzada (SPF, DKIM, DMARC, MX, NS)
+python-whois>=0.9.4     # Consultas WHOIS
+rich>=13.7.0            # Output enriquecido en terminal (tablas, colores, paneles)
